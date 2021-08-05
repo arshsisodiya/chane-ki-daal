@@ -16,4 +16,4 @@ wget https://raw.githubusercontent.com/arshsisodiya/ProjectHelios/demon/terminal
 The easiest way to deploy this great bot! is click on button below.
 Make sure you have an account of heroku and follow all the steps required.
 
-<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/arshsisodiya/ProjectHelios/blob/demon"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
+<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/arshsisodiya/chane-ki-daal/blob/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
