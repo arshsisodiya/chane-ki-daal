@@ -1,6 +1,7 @@
 
 """ Userbot initialization. """
 
+
 import os
 import platform
 import re
@@ -76,11 +77,7 @@ BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID") or 0)
 
 # Userbot logging feature switch.
 BOTLOG = sb(os.environ.get("BOTLOG") or "False")
-if BOTLOG:
-    LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "False")
-else:
-    LOGSPAMMER = False
-
+LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "False") if BOTLOG else False
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN") or "False")
 
@@ -252,10 +249,7 @@ async def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        if count < 3:
-            remainder, result = divmod(seconds, 60)
-        else:
-            remainder, result = divmod(seconds, 24)
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -308,8 +302,6 @@ async def start():
                         )
         except BaseException:
             None
-    else:
-        pass
 
 with bot:
     bot.loop.run_until_complete(start())
