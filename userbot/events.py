@@ -58,9 +58,6 @@ def register(**args):
                 return
             if not LOGSPAMMER:
                 check.chat_id
-            else:
-                pass
-
             if not trigger_on_fwd and check.fwd_from:
                 return
 
@@ -74,14 +71,8 @@ def register(**args):
             try:
                 await func(check)
 
-            # Thanks to @kandnub for this HACK.
-            # Raise StopPropagation to Raise StopPropagation
-            # This needed for AFK to working properly
-
             except events.StopPropagation:
                 raise events.StopPropagation
-            # This is a gay exception and must be passed out. So that it doesnt
-            # spam chats
             except KeyboardInterrupt:
                 pass
             except BaseException:
@@ -96,7 +87,7 @@ def register(**args):
                     text = "**USERBOT ERROR REPORT**\n"
                     link = "[Userbot Support](https://t.me/ProjectHelios)"
                     text += "If you want to, you can report it"
-                    text += f". Head and forward this message to Support Group.\n"
+                    text += '. Head and forward this message to Support Group.\n'
                     text += "Nothing is logged except the fact of error and date\n"
 
                     ftext = "========== DISCLAIMER =========="
@@ -131,21 +122,12 @@ def register(**args):
 
                     ftext += result
 
-                    file = open("error.log", "w+")
-                    file.write(ftext)
-                    file.close()
-
-                    if LOGSPAMMER:
-                       await check.client.send_file(BOTLOG_CHATID, "error.log", caption=text)
-
-
-                    else:
-                       await check.client.send_file(BOTLOG_CHATID, "error.log", caption=text)
+                    with open("error.log", "w+") as file:
+                        file.write(ftext)
+                    await check.client.send_file(BOTLOG_CHATID, "error.log", caption=text)
 
 
                     remove("error.log")
-            else:
-                pass
 
         if not disable_edited:
             bot.add_event_handler(wrapper, events.MessageEdited(**args))

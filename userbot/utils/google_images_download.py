@@ -844,7 +844,7 @@ class googleimagesdownload:
                 },
             ],
         }
-        for _, value in params.items():
+        for value in params.values():
             if value[0] is not None:
                 ext_param = value[1][value[0]]
                 # counter will tell if it is first param added or not
@@ -1502,11 +1502,7 @@ class googleimagesdownload:
             sys.exit()
 
         # If this argument is present, set the custom output directory
-        if arguments["output_directory"]:
-            main_directory = arguments["output_directory"]
-        else:
-            main_directory = "downloads"
-
+        main_directory = arguments["output_directory"] or "downloads"
         # Proxy settings
         if arguments["proxy"]:
             os.environ["http_proxy"] = arguments["proxy"]
